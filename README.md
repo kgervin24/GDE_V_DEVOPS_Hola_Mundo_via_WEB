@@ -56,3 +56,36 @@ npm install
 - COMMIT: 
   358f758 - "Kezdeti webalkalmazás inicializálása"
   4b50769 - "Health endpoint hozzáadása" (merged)
+
+## Fejlesztési lépések v3.1
+
+- `Dockerfile` létrehozása
+- `.dockerignore` létrehozása a szükségtelen fájlok kizárására
+- Docker jogosultságok ellenőrzése, a parancsok végrehajtása "sudo" használatával
+- Docker image létrehozása
+    image_name: gde-devops-hola-mundo:1.0
+    image_ ID: ade8e46b192f
+
+## Fejlesztési lépések v3.2
+
+- Docker image alapján `gde-hola-web` nevű konténer létrehozása
+- A Linux VM 8081-es portjának továbbítása a konténer 8080-as portjára
+- Böngészőben tesztelt végpontok:
+      http://localhost:8081/ –> Hola Mundo főoldal
+      http://localhost:8081/health –> JSON állapotellenőrzés
+
+## Fejlesztési lépések v3.3
+
+1. A konténer az image alapján létrehozott futtatható példányt.
+2. Az image tartalmazza az alkalmazást és annak futtatókörnyezetét.
+3. A konténer leállítása nem törli sem az image-et, sem a konténert.
+
+- Konténer első indítása:
+    `sudo docker run -d --name gde-hola-web -p 8081:8080 gde-devops-hola-mundo:1.0`
+
+- Konténer leállítása:
+    `sudo docker stop gde-hola-web`
+
+- Konténer újra elindítása:
+   `sudo docker start gde-hola-web`
+
