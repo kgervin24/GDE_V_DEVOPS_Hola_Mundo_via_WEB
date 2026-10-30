@@ -89,3 +89,29 @@ npm install
 - Konténer újra elindítása:
    `sudo docker start gde-hola-web`
 
+## Fejlesztési lépések v4
+
+- GitHub Actions verziókezelés létrehozása
+- Automatizált tesztelés kialakítása:
+
+  1. Automatizált HTTP-teszt (`tests/app.test.js`)
+     - Elindítja a meglévő `src/app.js` alkalmazást.
+     - Megvárja, amíg a HTTP-szerver válaszol.
+     - Ellenőrzi a főoldalt és a `/health` végpontot.
+     - A teszt végén leállítja az általa indított szervert.
+     
+  2. package.json fileban "teszt ág" deklarálása
+  
+  3. GitHub Actions CI kiegészítése (`.github/workflows/ci.yml`)
+     - Függőségek telepítése
+     - Alkalmazás ellenőrzése
+     - Ha sikeres a teszt, akkor Docker Image építése
+       (hiba esetén nincs bulid)
+  
+- A futtatás során a GitHub figyelmeztetést jelenített meg, 
+  mivel az alkalmazott `actions/checkout@v4` és `actions/setup-node@v4` 
+  komponensek Node.js 20 futtatókörnyezetet céloznak
+  (update Node.js 24-et támogató v5 verzióra)
+  Jelen projekt elsődleges célja azonban a DevOps-fejlesztési folyamat 
+  gyakorlati bemutatása, nem pedig egy éles üzemi rendszer kialakítása.
+
